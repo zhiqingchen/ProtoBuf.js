@@ -1381,7 +1381,7 @@
                     var bb = t.encode(); // flips
                     test.strictEqual(bb.remaining(), size);
                     t = Test.decode(bb);
-                    test.strictEqual(t.type, -1);
+                    test.strictEqual(t.type, 'INVALID');
                 });                
             } catch (e) {
                 fail(e);

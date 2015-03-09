@@ -3132,9 +3132,16 @@
                         return !!buffer.readVarint32();
 
                     // Constant enum value (varint)
-                    case ProtoBuf.TYPES["enum"]:
+                    case ProtoBuf.TYPES["enum"]:{
                         // The following Builder.Message#set will already throw
-                        return buffer.readVarint32();
+                        var value = buffer.readVarint32();
+                        var values = this.resolvedType.getChildren(Enum.Value);
+                        for (var i=0; i<values.length; i++){
+                            if (values[i].id == value){
+                                return values[i].name;
+                            }
+                        }
+                    }
 
                     // 32bit float
                     case ProtoBuf.TYPES["float"]:
